@@ -1,0 +1,20 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "emailjs-mime-parser": "^2.0.7",
+    "express": "^4.19.2",
+    "fs": "^0.0.1-security",
+    "nodemailer": "^6.9.13",
+    "stream": "^0.0.2"
+  }
+}

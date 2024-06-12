@@ -1,0 +1,83 @@
+/* Annotation.css */
+
+/* Ensure the body covers the whole screen */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 100% of viewport height */
+  background-color: #f0f2f54f; /* Grey background */
+}
+
+/* Ensure the container covers the whole screen */
+.circle-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Styles for the circle */
+.circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #a5a5a5; /* Blue circle background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  touch-action: none;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+}
+
+/* Active state for the circle */
+.circle:active {
+  /* transform: scale(0.95); */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Text inside the circle */
+.circle span {
+  color: rgb(252, 252, 252);
+  font-weight: bold;
+  user-select: none; /* Prevent text selection on double click */
+}
+
+/* X-axis */
+.axis-x {
+  position: absolute;
+  background-color: black;
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  left: 0;
+}
+
+/* Y-axis */
+.axis-y {
+  position: absolute;
+  background-color: black;
+  height: 100%;
+  width: 1px;
+  left: 50%;
+  top: 0;
+}
+
+/* Dot representing mouse position */
+.dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%;
+  pointer-events: none;
+}
