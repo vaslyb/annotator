@@ -6,9 +6,12 @@ import SignUp from './components/SignUp'; // Import the SignUp component
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState(''); // Add state to manage the token
   const [isSignUp, setIsSignUp] = useState(false); // State to manage sign-up option
-
-  const handleLogin = () => {
+  const [email, setEmail] = useState('');
+  const handleLogin = (email,authToken) => {
+    setToken(authToken); // Save the token
+    setEmail(email);
     setIsLoggedIn(true);
   };
 
@@ -19,12 +22,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {isLoggedIn ? <Annotation /> : (isSignUp ? <SignUp /> : <Login onLogin={handleLogin} onSignUp={handleSignUp} />)}
-        {/* 
-          If isLoggedIn is true, render Annotation
-          If isSignUp is true, render SignUp
-          Otherwise, render Login with handleSignUp prop
-        */}
+        {isLoggedIn ? (
+          <Annotation token={token} userId={email} /> // Pass the token as a prop
+        ) : isSignUp ? (
+          <SignUp onSignUp={handleLogin} />
+        ) : (
+          <Login onLogin={handleLogin} onSignUp={handleSignUp} />
+        )}
       </header>
     </div>
   );

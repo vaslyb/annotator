@@ -24,7 +24,7 @@ const Login = ({ onLogin }) => {
         const data = await response.json();
         console.log(data);
         // Assume login is successful if a token is received
-        onLogin();
+        onLogin(email,data.authToken); // Pass the token to the parent component
       } else {
         setError('Invalid email or password');
       }

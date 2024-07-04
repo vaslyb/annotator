@@ -9,7 +9,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh; /* 100% of viewport height */
-  background-color: #f0f2f54f; /* Grey background */
+  background-color: #ffffff; /* Grey background */
 }
 
 /* Ensure the container covers the whole screen */
@@ -21,12 +21,14 @@ body {
   height: 100%;
 }
 
-/* Styles for the circle */
 .circle {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: #a5a5a5; /* Blue circle background */
+  width: 800px;
+  height: 800px;
+  background-color: #ffffff; /* Fallback background color */
+  background-image: url('../figs/russel.png'); /* Replace with your image path */
+  background-size: 100%; /* Ensure the image covers the circle */
+  background-position: center; /* Center the image within the circle */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,12 +38,10 @@ body {
   transform: translate(-50%, -50%);
   touch-action: none;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-
 }
 
 /* Active state for the circle */
 .circle:active {
-  /* transform: scale(0.95); */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -80,4 +80,68 @@ body {
   background-color: black;
   border-radius: 50%;
   pointer-events: none;
+}
+
+
+/* Larger redo and download buttons */
+
+.download-button {
+  position: absolute;
+  bottom: 20px; /* More space from the bottom */
+  background-color: #04ff00; /* Solid blue background */
+  color: white;
+  border: none;
+  padding: 15px 30px; /* Larger padding for a bigger button */
+  cursor: pointer;
+  border-radius: 8px; /* Slightly larger border radius */
+  font-size: 18px; /* Larger text */
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for better visibility */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.redo-button{
+  position: absolute;
+  bottom: 20px; /* More space from the bottom */
+  background-color: #ff0000; /* Solid blue background */
+  color: white;
+  border: none;
+  padding: 15px 30px; /* Larger padding for a bigger button */
+  cursor: pointer;
+  border-radius: 8px; /* Slightly larger border radius */
+  font-size: 18px; /* Larger text */
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for better visibility */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.redo-button {
+  left: 20px; /* More space from the left */
+}
+
+.download-button {
+  right: 20px; /* More space from the right */
+}
+
+/* Hover and active states for both buttons */
+.download-button:hover {
+  background-color: #3cff00d2; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.redo-button:hover{
+  background-color: #ff0000c4; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+
+.redo-button:active{
+  background-color: #04ff008a; /* Even darker blue on click */
+  transform: translateY(0); /* Reset lift effect on click */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduce shadow on click */
+}
+.download-button:active {
+  background-color: #ff000075; /* Even darker blue on click */
+  transform: translateY(0); /* Reset lift effect on click */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduce shadow on click */
 }
