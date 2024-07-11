@@ -1,8 +1,9 @@
+// src/components/Annotation.js
 import React, { useRef, useEffect, useState } from 'react';
 import './Annotation.css';
 import EmotionModal from './EmotionModal';  // Import the EmotionModal component
 
-const Annotation = ({ userId, sessionId, token }) => {
+const Annotation = ({ userId, sessionId, token, recordingId }) => {
   const circleRef = useRef(null);
   const dotRef = useRef(null);
   const [isTracking, setIsTracking] = useState(false);
@@ -10,6 +11,7 @@ const Annotation = ({ userId, sessionId, token }) => {
   const [annotations, setAnnotations] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEmotion, setSelectedEmotion] = useState('');
+
 
   const saveAnnotation = (relativeX, relativeY) => {
     const annotationTime = new Date().toISOString();
@@ -19,6 +21,7 @@ const Annotation = ({ userId, sessionId, token }) => {
       valence: Math.round(relativeY),
       user_id: userId,
       session_id: sessionId,
+      recording_id: recordingId,  // Include the recording ID in the annotation
       annotation_time: annotationTime,
     };
     setAnnotations(prevAnnotations => [...prevAnnotations, newAnnotation]);
@@ -135,9 +138,10 @@ const Annotation = ({ userId, sessionId, token }) => {
   const handleEmotionSelect = (emotion) => {
     setSelectedEmotion(emotion);
 
-    // Save annotations to JSON file with selected emotion
+    // Save annotations to JSON file with selected emotion and recording ID
     const annotationsWithEmotion = {
       emotion: emotion,
+      recording_id: recordingId,  // Include the recording ID in the JSON data
       annotations: annotations
     };
     const blob = new Blob([JSON.stringify(annotationsWithEmotion, null, 2)], { type: 'application/json' });
