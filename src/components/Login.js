@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import './Login.css';  // Ensure this path is correct
-import loginBackground from '../figs/annotation.jpg'; // Adjust the path based on your folder structure
-import SignUp from './SignUp'; // Import the SignUp component
+import { useNavigate } from 'react-router-dom';
+import './Login.css';
+import loginBackground from '../figs/annotation.jpg';
+import SignUp from './SignUp';
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [isSignUp, setIsSignUp] = useState(false); // State to manage sign-up option
+  const [isSignUp, setIsSignUp] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,9 +24,8 @@ const Login = ({ onLogin }) => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-        // Assume login is successful if a token is received
-        onLogin(email,data.authToken); // Pass the token to the parent component
+        onLogin(email, data.authToken);
+        navigate('/list'); // Navigate to the list page on successful login
       } else {
         setError('Invalid email or password');
       }
@@ -34,23 +35,18 @@ const Login = ({ onLogin }) => {
   };
 
   const handleSignUpClick = () => {
-    setIsSignUp(true);
-  };
-
-  const handleLoginClick = () => {
-    setIsSignUp(false);
+    navigate('/signup'); // Navigate to the sign-up page
   };
 
   return (
     <div className="login-container" style={{ backgroundImage: `url(${loginBackground})` }}>
       <div className="login-card">
-        <h2></h2> {/* Add title "Annotate" here */}
+        <h1>Are you ready to annotate?</h1>
         {error && <p className="error-message">{error}</p>}
         {isSignUp ? (
-          <SignUp onSignUp={handleLoginClick} />
+          <SignUp onSignUp={() => setIsSignUp(false)} />
         ) : (
           <>
-            <h1>Are you ready to annotate?</h1>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>Email</label>

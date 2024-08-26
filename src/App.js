@@ -1,24 +1,14 @@
 // src/App.js
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login';
 import Annotation from './components/Annotation';
 import SignUp from './components/SignUp';
-import List from './components/List'; // Import the List component
-
-ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
-  document.getElementById('root')
-);
+import List from './components/List';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState('');
-  const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [selectedRecordingId, setSelectedRecordingId] = useState(null); // State to manage selected recording ID
   const [recordings] = useState([
@@ -32,11 +22,10 @@ function App() {
   const handleLogin = (email, authToken) => {
     setToken(authToken);
     setEmail(email);
-    setIsLoggedIn(true);
   };
 
   const handleSignUp = () => {
-    setIsSignUp(true);
+    // Handle sign-up logic here if needed
   };
 
   const handleSelectRecording = (id) => {
@@ -44,21 +33,35 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {isLoggedIn ? (
-          selectedRecordingId !== null ? (
-            <Annotation token={token} userId={email} recordingId={selectedRecordingId} />
-          ) : (
-            <List recordings={recordings} onSelectRecording={handleSelectRecording} />
-          )
-        ) : isSignUp ? (
-          <SignUp onSignUp={handleLogin} />
-        ) : (
-          <Login onLogin={handleLogin} onSignUp={handleSignUp} />
-        )}
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <Routes>
+            <Route path="/" element={<Login onLogin={handleLogin} onSignUp={handleSignUp} />} />
+            <Route path="/signup" element={<SignUp onSignUp={handleLogin} />} />
+            <Route 
+              path="/list" 
+              element={
+                <List 
+                  recordings={recordings} 
+                  onSelectRecording={handleSelectRecording} 
+                />
+              } 
+            />
+            <Route 
+              path="/annotation" 
+              element={
+                <Annotation 
+                  token={token} 
+                  userId={email} 
+                  recordingId={selectedRecordingId} 
+                />
+              } 
+            />
+          </Routes>
+        </header>
+      </div>
+    </Router>
   );
 }
 

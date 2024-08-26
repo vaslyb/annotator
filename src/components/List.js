@@ -1,15 +1,23 @@
 // src/components/List.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './List.css';
 
 const List = ({ recordings, onSelectRecording }) => {
+  const navigate = useNavigate();
+
+  const handleSelectRecording = (id) => {
+    onSelectRecording(id); // Update the selected recording in the parent component
+    navigate('/annotation'); // Navigate to the annotation page
+  };
+
   return (
     <div className="list-container">
-      {recordings.map((recording, index) => (
+      {recordings.map((recording) => (
         <button
-          key={index}
+          key={recording.id}
           className="list-button"
-          onClick={() => onSelectRecording(recording.id)}
+          onClick={() => handleSelectRecording(recording.id)}
         >
           Recording {recording.id}
         </button>
@@ -19,4 +27,3 @@ const List = ({ recordings, onSelectRecording }) => {
 };
 
 export default List;
-
