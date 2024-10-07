@@ -8,45 +8,83 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px; /* Adds space around the modal */
+  padding: 10px;
 }
 
 .modal-content {
   background: white;
-  padding: 40px;  /* Increased padding for a more spacious feel */
-  border-radius: 12px;  /* Slightly larger border radius for a more rounded look */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* Enhanced shadow for better depth */
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   text-align: center;
-  max-width: 800px;  /* Set a max width for the modal */
-  width: 100%;  /* Make the modal width responsive */
+  max-width: 800px;
+  width: 100%;
 }
 
 .emotion-options {
   display: flex;
-  justify-content: center;  /* Center the buttons horizontally */
-  gap: 10px;  /* Space between buttons */
+  justify-content: center;
+  gap: 10px;
   margin-bottom: 20px;
-  flex-wrap: nowrap;  /* Prevent wrapping to the next line */
-  overflow-x: auto;  /* Add horizontal scroll if necessary */
-  padding: 10px;  /* Optional: Adds space around the button area */
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 10px;
 }
 
 .emotion-button {
-  color: #FFFFFF;  /* Default text color */
+  color: #FFFFFF;
   border: none;
-  padding: 12px 24px;  /* Increased padding for larger buttons */
-  border-radius: 8px;  /* Slightly larger border radius for buttons */
+  padding: 12px 24px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;  /* Increased font size for better readability */
-  background: #007BFF;  /* Example background color */
+  font-size: 16px;
+  background: #007BFF;
+  transition: background 0.3s ease;
 }
 
 .emotion-button:hover {
-  opacity: 0.8;  /* Slightly dim the button on hover */
+  opacity: 0.8;
+}
+
+.emotion-button.selected {
+  background: #004A9F;  /* Darker color when clicked */
 }
 
 .modal-content h2 {
-  margin-bottom: 20px;  /* Space below the heading */
-  font-size: 24px;  /* Slightly larger heading text */
-  font-weight: bold;  /* Make the heading bold */
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.question-section {
+  margin-top: 20px;  /* Add some space between the emotions and the questions */
+}
+
+.question-section h3 {
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.scale-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.confirm-button {
+  position: center;
+  bottom: 20px; /* More space from the bottom */
+  background-color: #0015ffbb; /* Solid green background */
+  color: white;
+  border: none;
+  padding: 15px 30px; /* Larger padding for a bigger button */
+  cursor: pointer;
+  border-radius: 8px; /* Slightly larger border radius */
+  font-size: 18px; /* Larger text */
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for better visibility */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+}
+.confirm-button:hover {
+  background-color: #214588;
 }

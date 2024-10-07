@@ -152,7 +152,7 @@ const Annotation = ({ userId, sessionId, token, recordingId }) => {
     setIsModalOpen(true);
   };
   
-  const handleEmotionSelect = (emotion) => {
+  const handleConfirm = (emotion) => {
     setSelectedEmotion(emotion);
   
     // Save annotations to JSON file with selected emotion and recording ID
@@ -206,11 +206,11 @@ const Annotation = ({ userId, sessionId, token, recordingId }) => {
       </div>
       <div ref={dotRef} className="dot"></div>
       <button onClick={handleRedo} className="redo-button">Start Over</button>
-      <button onClick={downloadAnnotations} className="download-button">Finish and Download</button>
+      <button onClick={downloadAnnotations} className="download-button">Finish</button>
       <EmotionModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
-        onConfirm={handleEmotionSelect} 
+        onConfirm={handleConfirm} 
       />
     </div>
   );
