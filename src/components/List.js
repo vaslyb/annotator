@@ -19,7 +19,7 @@ const List = ({ recordings, onSelectRecording }) => {
           className="list-button"
           onClick={() => handleSelectRecording(recording.id)}
         >
-          Recording {recording.id}
+          {recording.name}
         </button>
       ))}
     </div>

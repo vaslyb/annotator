@@ -1,4 +1,3 @@
-/* src/components/List.css */
 body, html {
   margin: 0;
   padding: 0;
@@ -13,28 +12,37 @@ body, html {
 }
 
 .list-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;  /* Ensure the container takes the full viewport height */
-  width: 100vw;   /* Ensure the container takes the full viewport width */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns for even distribution */
+  grid-column-gap: 2px; /* Horizontal gap between buttons */
+  grid-row-gap: 10px;  
+  padding: 20px;
+  height: 100vh;  /* Full viewport height */
+  width: 100vw;   /* Full viewport width */
   background: url('../figs/recording.jpg') no-repeat center center fixed;
   background-size: cover;  /* Cover the entire background */
-}
   
+  /* Grid centering */
+  justify-content: center; /* Center the grid horizontally */
+  align-content: center;   /* Center the grid vertically */
+  justify-items: center;   /* Center the items within each grid cell horizontally */
+  align-items: center;     /* Center the items within each grid cell vertically */
+}
+
 .list-button {
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 5px; /* Adjust padding for smaller buttons */
+  font-size: 16px; /* Adjust font size if needed */
+  width: 100px;  /* New button width */
+  height: 100px; /* New button height to keep it square */
+  text-align: center;
   cursor: pointer;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #007bff;
   color: white;
   transition: background-color 0.3s ease;
 }
 
 .list-button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Slightly darker blue on hover */
 }

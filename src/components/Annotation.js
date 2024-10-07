@@ -3,6 +3,23 @@ import React, { useRef, useEffect, useState } from 'react';
 import './Annotation.css';
 import EmotionModal from './EmotionModal';  // Import the EmotionModal component
 
+
+const recordingMapping = {
+  1: 'PH0_T0',  // Phase 0 Task 0
+  2: 'PH0_T1',  // Phase 0 Task 1
+  3: 'PH1_T0',  // Phase 1 Task 0
+  4: 'PH1_T1',  // Phase 1 Task 1
+  5: 'PH1_T2',  // Phase 1 Task 2
+  6: 'PH1_T3',  // Phase 1 Task 3
+  7: 'PH1_T4',  // Phase 1 Task 4
+  8: 'PH2_T0',  // Phase 2 Task 0
+  9: 'PH2_T1',  // Phase 2 Task 1
+  10: 'PH2_T2', // Phase 2 Task 2
+  11: 'PH3_T0', // Phase 3 Task 0
+  12: 'PH3_T1'  // Phase 3 Task 1
+};
+
+
 const Annotation = ({ userId, sessionId, token, recordingId }) => {
   const circleRef = useRef(null);
   const dotRef = useRef(null);
@@ -134,10 +151,10 @@ const Annotation = ({ userId, sessionId, token, recordingId }) => {
   const downloadAnnotations = () => {
     setIsModalOpen(true);
   };
-
+  
   const handleEmotionSelect = (emotion) => {
     setSelectedEmotion(emotion);
-
+  
     // Save annotations to JSON file with selected emotion and recording ID
     const annotationsWithEmotion = {
       emotion: emotion,
@@ -148,10 +165,14 @@ const Annotation = ({ userId, sessionId, token, recordingId }) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'annotations.json';
+    
+    // Name the file using the recordingId
+    const fileName = `${recordingMapping[recordingId]}.json`;
+    a.download = fileName;
+    
     a.click();
     URL.revokeObjectURL(url);
-
+  
     // Clear annotations after saving
     setAnnotations([]);
     setSelectedEmotion('');
